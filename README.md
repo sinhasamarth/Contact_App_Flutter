@@ -1,16 +1,25 @@
-# contact
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Contact App
+## Features 
+#### Coding Style - DRY and Singeton Pattern 
+#### Database -  SQLITE (offline)
+#### Code structuring logic - Tried to make the app modular and seprating business logic with UI using MVC Pattern
+#### State management techniques - GETX 
+#### File structure logic - 
+    ├── ...
+    ├── controller                   # All the Controller 
+    │   ├── ....
+    ├── model                        # All the Models 
+    │   ├── ContactModel               
+    ├── ui                           # All the UI Part
+    │   ├── dialogs                  # All dialogs 
+    │   ├── ....
+    │   ├── screens                  # All Screens 
+    │   ├── ....
+    │   ├── widget                   # All Widgets 
+    │   ├── ....
+    ├── Utils
+    │   ├── extensions               # Extensions
+    │   ├── constanst                # All Constants
+    ├── main.dart 
+    └── ...
+#### Coding Patterns - MVC 
