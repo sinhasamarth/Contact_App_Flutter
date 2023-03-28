@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ffi';
 
 import 'package:contact/controller/contact_database.dart';
 import 'package:contact/controller/home_screen_controller.dart';
@@ -85,3 +86,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
 }
+
+// Validation
+// 6, 7, 8 ,9 // len 10

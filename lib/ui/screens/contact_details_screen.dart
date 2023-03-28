@@ -1,5 +1,6 @@
 import 'package:contact/controller/contact_details_controller.dart';
 import 'package:contact/model/contact_model.dart';
+import 'package:contact/ui/dialog/del_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -73,7 +74,18 @@ class _ContactDetailsScreenState extends State<ContactDetailsScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: IconButton(
                     onPressed: () {
-                      controller.delContact(context);
+                      showDialog(context: context, builder: (context) =>
+                      DelAlertDialog(
+                        id: widget.data?.id ?? -1,
+                        name: widget.data?.firstName ?? " ",
+                        onSuccessCallback: () {
+                          controller.delContact(context);
+                          if(widget.isEdit) {
+                            Navigator.pop(context);
+                          }
+                        },
+                      )
+                      );
                     },
                     icon: const Icon(Icons.delete_outline)))
             : const SizedBox(
@@ -91,7 +103,7 @@ class _ContactDetailsScreenState extends State<ContactDetailsScreen> {
           InkWell(onTap: () {
             controller.getImage();
           }, child: Obx(() {
-           return CircleAvatar(
+            return CircleAvatar(
               backgroundColor: Colors.blue.shade900,
               radius: 50,
               backgroundImage: controller.isImageFetched.isTrue
@@ -102,7 +114,6 @@ class _ContactDetailsScreenState extends State<ContactDetailsScreen> {
                 color: Colors.white,
               ),
             );
-
           })),
           Obx(
             () => controller.isImageFetched.isFalse

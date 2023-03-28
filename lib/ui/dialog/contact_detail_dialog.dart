@@ -6,6 +6,7 @@ import 'package:contact/ui/widgets/custom_circular_avatar.dart';
 import 'package:contact/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:contact/ui/dialog/del_alert_dialog.dart';
 
 class ContactDetailsDialog extends StatelessWidget {
   final ContactModel _data;
@@ -124,7 +125,15 @@ class ContactDetailsDialog extends StatelessWidget {
               showDialog(
                   context: context,
                   builder: (context) {
-                    return alertDialog(context);
+                    return  DelAlertDialog(
+                      id: _data.id!,
+                      name: _data.firstName,
+                      onSuccessCallback: (){
+                        controller.fetchContact();
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      },
+                    );
                   });
             },
             icon: const Icon(Icons.delete_outline),
@@ -134,33 +143,33 @@ class ContactDetailsDialog extends StatelessWidget {
     );
   }
 
-  AlertDialog alertDialog(BuildContext context) {
-    return AlertDialog(
-      title: const Text('Want To Delete This Contact'),
-      content: Text(_name),
-      actions: <Widget>[
-        TextButton(
-            onPressed: () {
-              ContactDatabase().delContact(_data.id!).then((value) {
-                if (value == 1) {
-                  ExtensionsUtils.showSnackBar(
-                      context, "Deleted Contact $_name");
-                  controller.fetchContact();
-                  Navigator.pop(context);
-                  Navigator.pop(context);
-                }
-              });
-            },
-            child: const Text('Yes')),
-        TextButton(
-          onPressed: () {
-            Navigator.pop(context); //close Dialog
-          },
-          child: const Text('Close'),
-        )
-      ],
-    );
-  }
+  // AlertDialog alertDialog(BuildContext context) {
+  //   return AlertDialog(
+  //     title: const Text('Want To Delete This Contact'),
+  //     content: Text(_name),
+  //     actions: <Widget>[
+  //       TextButton(
+  //           onPressed: () {
+  //             ContactDatabase().delContact(_data.id!).then((value) {
+  //               if (value == 1) {
+  //                 ExtensionsUtils.showSnackBar(
+  //                     context, "Deleted Contact $_name");
+  //                 controller.fetchContact();
+  //                 Navigator.pop(context);
+  //                 Navigator.pop(context);
+  //               }
+  //             });
+  //           },
+  //           child: const Text('Yes')),
+  //       TextButton(
+  //         onPressed: () {
+  //           Navigator.pop(context); //close Dialog
+  //         },
+  //         child: const Text('Close'),
+  //       )
+  //     ],
+  //   );
+  // }
 
   Widget _buildTopBar(BuildContext context) {
     return Container(
